@@ -12,6 +12,9 @@ node {
        sh "sbt compile test"
   }
 
+  stage "package"
+  sh "sbt package"
+
 
   def deployImage = docker.build "dr0l3/testsbt:${env.BUILD_NUMBER}"
 

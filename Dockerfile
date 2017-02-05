@@ -1,13 +1,5 @@
-FROM hseeberger/scala-sbt
+FROM anapsix/alpine-java
 
-RUN git clone https://github.com/dr0l3/spraySbtTutorial.git
+COPY ./target/scala-2.11/*.jar app.jar
 
-RUN cd spraySbtTutorial
-
-WORKDIR spraySbtTutorial
-
-RUN sbt update
-
-RUN sbt compile
-
-ENTRYPOINT ["sbt","run"]
+ENTRYPOINT ["java","-jar","app.jar"]
