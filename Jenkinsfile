@@ -7,4 +7,10 @@ node {
     stage "compile test"
         sh "sbt compile test"
   }
+
+  stage 'package'
+  docker.build('droletours/sbtDockerJenkins').push()
+
+  stage 'deploy'
+  sh './deploy.sh'
 }
