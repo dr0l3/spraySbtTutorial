@@ -15,7 +15,7 @@ node {
 
   def deployImage = docker.build('droletours:testsbt')
 
-  docker.withRegistry('hub.docker.com', "docker-registry-login") {
+  docker.withRegistry('https://hub.docker.com/', "docker-registry-login") {
     deployImage.push()
   }
 
