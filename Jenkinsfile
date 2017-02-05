@@ -14,7 +14,7 @@ node {
        sh "sbt compile test"
   }
 
-  testImage.kill()
+  testImage.stop()
 
   stage "package"
   sh "sbt assembly"
