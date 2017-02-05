@@ -1,6 +1,6 @@
 node {
 
-  var testImage = docker.image('hseeberger/scala-sbt').inside {
+  def testImage = docker.image('hseeberger/scala-sbt').inside {
     checkout scm
 
     stage "install dependencies"
@@ -11,7 +11,7 @@ node {
   }
 
   stage "commit and push"
-  var deployImage = testImage.inside {
+  def deployImage = testImage.inside {
     stage "run"
         sh "sbt run"
   }
