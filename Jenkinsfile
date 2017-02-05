@@ -12,11 +12,6 @@ node {
        sh "sbt compile test"
   }
 
-  stage "commit and push"
-  testImage.inside {
-    stage "run"
-        sh "sbt run"
-  }
 
   testImage.commit('droletours:sbtDockerJenkins').push()
 
