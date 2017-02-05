@@ -9,7 +9,7 @@ node {
   }
 
   stage 'package'
-  docker.build('droletours/sbtDockerJenkins').push()
+  docker.build('droletours/sbtDockerJenkins:1.0').push()
 
   stage 'deploy'
   sh './deploy.sh'
