@@ -1,6 +1,6 @@
 lazy val root = (project in file(".")).
   settings(
-    name := "my-project",
+    name := "app",
     version := "1.0",
     scalaVersion := "2.11.4",
     mainClass in Compile := Some("com.droletours.boot")

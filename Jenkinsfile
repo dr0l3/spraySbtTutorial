@@ -1,4 +1,6 @@
 node {
+  deleteDir()
+  checkout scm
 
   def testImage = docker.image('hseeberger/scala-sbt')
   testImage.pull()
@@ -11,6 +13,8 @@ node {
     stage "compile test"
        sh "sbt compile test"
   }
+
+  testImage.kill()
 
   stage "package"
   sh "sbt assembly"
