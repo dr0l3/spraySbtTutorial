@@ -6,4 +6,4 @@ RUN sbt update
 
 RUN sbt compile
 
-ENTRYPOINT ["sbt","run"]
+#ENTRYPOINT ["sbt","run"]
