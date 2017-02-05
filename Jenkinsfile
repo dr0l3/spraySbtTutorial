@@ -15,11 +15,7 @@ node {
 
   def deployImage = docker.build('dr0l3/testsbt')
 
-
-
-  docker.withRegistry("https://hub.docker.com", "docker-registry-login") {
-    deployImage.push("latest")
-  }
+  deployImage.push()
 
   stage "deploy"
   sh './deploy.sh'
