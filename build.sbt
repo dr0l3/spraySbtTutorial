@@ -1,18 +1,16 @@
-lazy val root = (project in file(".")).
-  settings(
-    name := "app",
-    version := "1.0",
-    scalaVersion := "2.11.4",
-    mainClass in Compile := Some("com.droletours.boot")
-  )
+enablePlugins(JavaServerAppPackaging)
 
-organization  := "com.droletours"
-
-version       := "0.1"
-
-scalaVersion  := "2.11.6"
+name := "app"
+version := "1.0"
+scalaVersion := "2.11.6"
 
 scalacOptions := Seq("-deprecation", "-encoding", "utf8")
+
+mainClass in Compile := Some("com.droletours.Boot")
+
+resolvers ++= Seq("Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
+  "Spray Repository"    at "http://repo.spray.io")
+
 
 libraryDependencies ++= {
   val akkaV = "2.3.9"
@@ -29,9 +27,6 @@ libraryDependencies ++= {
   )
 }
 
-assemblyMergeStrategy in assembly := {
-  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-  case x => MergeStrategy.first
-}
+assemblyJarName in assembly := "color.jar"
 
 Revolver.settings
