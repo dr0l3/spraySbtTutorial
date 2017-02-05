@@ -1,7 +1,8 @@
 node {
-  deleteDir()
-  checkout scm
+
   docker.image('hseeberger/scala-sbt').inside {
+    checkout scm
+
     stage "install dependencies"
         sh "sbt update"
 
