@@ -20,5 +20,5 @@ node {
   }
 
   stage "deploy"
-  sh './deploy.sh'
+  sh 'source deploy.sh'
 }
