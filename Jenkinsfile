@@ -15,7 +15,7 @@ node {
 
   def deployImage = docker.build "dr0l3/testsbt:${env.BUILD_NUMBER}"
 
-  docker.withRegistry("https://docker.com", "docker-registry-login") {
+  docker.withRegistry("https://docker.io", "docker-registry-login") {
     deployImage.push "latest"
   }
 
