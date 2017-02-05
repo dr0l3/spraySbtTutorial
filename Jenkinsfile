@@ -1,6 +1,6 @@
 node {
 
-  docker.image('hseeberger:scala-sbt').inside {
+  docker.image('hseeberger/scala-sbt').inside {
     checkout scm
 
     stage "install dependencies"
