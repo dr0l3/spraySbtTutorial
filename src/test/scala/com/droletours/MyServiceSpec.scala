@@ -1,4 +1,4 @@
-package com.example
+package com.droletours
 
 import org.specs2.mutable.Specification
 import spray.testkit.Specs2RouteTest
@@ -10,9 +10,21 @@ class MyServiceSpec extends Specification with Specs2RouteTest with MyService {
   
   "MyService" should {
 
-    "return a greeting for GET requests to the root path" in {
-      Get() ~> myRoute ~> check {
-        responseAs[String] must contain("Say hello")
+    "return a color for GET requests to the hi path" in {
+      Get("/hi") ~> myRoute ~> check {
+        responseAs[String] must contain("Some color with hi")
+      }
+    }
+
+    "return a color for GET requests to the hello path" in {
+      Get("/hello") ~> myRoute ~> check {
+        responseAs[String] must contain("Some random color")
+      }
+    }
+
+    "return a greeting for GET requests to the colormesilly path" in {
+      Get("/colormesilly") ~> myRoute ~> check {
+        responseAs[String] must contain("rainbow")
       }
     }
 
