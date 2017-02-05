@@ -1,22 +1,24 @@
 node {
 
-  def testImage = docker.image('hseeberger/scala-sbt').inside {
+  def testImage = docker.image('hseeberger/scala-sbt')
+  testImage.pull
+  testImage.inside {
     checkout scm
 
     stage "install dependencies"
-        sh "sbt update"
+       sh "sbt update"
 
     stage "compile test"
-        sh "sbt compile test"
+       sh "sbt compile test"
   }
 
   stage "commit and push"
-  def deployImage = testImage.inside {
+  testImage.inside {
     stage "run"
         sh "sbt run"
   }
 
-  deployImage.commit('droletours:sbtDockerJenkins').push()
+  testImage.commit('droletours:sbtDockerJenkins').push()
 
   stage "deploy"
   sh './deploy.sh'
