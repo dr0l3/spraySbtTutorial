@@ -1,6 +1,6 @@
 node {
 
-  docker.image('hseeberger/scala-sbt').inside {
+  docker.image('hseeberger:scala-sbt').inside {
     checkout scm
 
     stage "install dependencies"
@@ -11,7 +11,7 @@ node {
   }
 
   stage 'package'
-  docker.build('droletours/sbtDockerJenkins').push()
+  docker.build('droletours:sbtDockerJenkins').push()
 
   stage 'deploy'
   sh './deploy.sh'
