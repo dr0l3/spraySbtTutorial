@@ -1,10 +1,11 @@
 node {
   deleteDir()
   checkout scm
+  sh "sbt update"
 
   def testImage = docker.image('hseeberger/scala-sbt')
   testImage.pull()
-  testImage.inside {
+  testImage.inside ("-v ~/.m2:/root/.m2:rw", "-v ~/.ivy2:/root/.ivy2:rw") {
     checkout scm
 
     stage "install dependencies"
@@ -13,8 +14,6 @@ node {
     stage "compile test"
        sh "sbt compile test"
   }
-
-  testImage.stop()
 
   stage "package"
   sh "sbt assembly"
