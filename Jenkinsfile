@@ -1,7 +1,7 @@
 node {
 
   def testImage = docker.image('hseeberger/scala-sbt')
-  testImage.pull
+  testImage.pull()
   testImage.inside {
     checkout scm
 
