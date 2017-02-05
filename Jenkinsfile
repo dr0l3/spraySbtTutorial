@@ -13,9 +13,9 @@ node {
   }
 
 
-  def deployImage = docker.build('dr0l3/testsbt')
+  def deployImage = docker.build "dr0l3/testsbt:${env.BUILD_NUMBER}"
 
-  deployImage.push()
+  deployImage.push "latest"
 
   stage "deploy"
   sh './deploy.sh'
