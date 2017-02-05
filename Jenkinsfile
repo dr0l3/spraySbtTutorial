@@ -13,7 +13,7 @@ node {
   }
 
 
-  testImage.commit('droletours:sbtDockerJenkins').push()
+  docker.build('droletours:testsbt').push()
 
   stage "deploy"
   sh './deploy.sh'
