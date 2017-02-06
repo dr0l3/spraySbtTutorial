@@ -3,9 +3,9 @@ node {
   checkout scm
   sh "sbt update"
 
-  def testImage = docker.image('hseeberger/scala-sbt')
+  def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
-  testImage.inside("-v /home/jenkins/.m2/:/root/.m2:rw -v /home/jenkins/.ivy2/:/root/.ivy2/:rw -v /home/jenkins/.sbt:/root/sbt:rw") {
+  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw") {
     checkout scm
 
     stage "install dependencies"
