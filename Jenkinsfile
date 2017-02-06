@@ -27,4 +27,7 @@ node {
 
   stage "deploy"
   sh './deploy.sh'
+
+  stage "smoke test"
+  sh 'curl localhost:8081/colormesilly'
 }
