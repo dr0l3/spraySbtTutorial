@@ -10,7 +10,7 @@ import scala.concurrent.duration._
 object Constants {
   def actorSystemName = "on-spray-can"
   def actorServiceName = "demo-service"
-  def localhost = "localhost"
+  def localhost = "0.0.0.0"
   def port = 8080
 }
 
