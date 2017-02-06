@@ -11,7 +11,7 @@ object Constants {
   def actorSystemName = "on-spray-can"
   def actorServiceName = "demo-service"
   def localhost = "localhost"
-  def port = 8082
+  def port = 8080
 }
 
 object Boot extends App {
