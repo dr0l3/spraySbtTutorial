@@ -9,7 +9,7 @@ node {
 
   def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
-  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw -v `pwd`:/root/project") {
+  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw -v ${WORKSPACE}:/root/project") {
     sh "cd project"
 
     stage "test"
