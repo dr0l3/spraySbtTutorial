@@ -17,6 +17,8 @@ node {
 
     sh "ls"
 
+    sh "sbt sbtVersion"
+
     stage "test"
     sh "sbt test"
   }
