@@ -11,7 +11,7 @@ node {
 
   def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
-  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw" -v .:/root/:rw) {
+  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw" -v ./:/root/:rw) {
     stage "test"
        sh "sbt compile test"
   }
