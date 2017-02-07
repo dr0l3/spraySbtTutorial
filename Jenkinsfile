@@ -7,6 +7,10 @@ node {
   stage "compile"
   sh "sbt compile"
 
+  sh "docker images"
+
+  sh "whoami"
+
   def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
   testImage.inside() {
