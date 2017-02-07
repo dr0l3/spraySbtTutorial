@@ -3,15 +3,16 @@ node {
   checkout scm
   sh "sbt update"
 
+  stage "install dependencies"
+  sh "sbt update"
+
+  stage "compile"
+  sh "sbt compile"
+
   def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
-  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw") {
-    checkout scm
-
-    stage "install dependencies"
-       sh "sbt update"
-
-    stage "compile test"
+  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw" -v .:/root/:rw) {
+    stage "test"
        sh "sbt compile test"
   }
 
@@ -31,4 +32,5 @@ node {
   stage "smoke test"
   sh 'sleep 5'
   sh 'curl localhost:8081/colormesilly'
+  deleteDir()
 }
