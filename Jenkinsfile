@@ -11,14 +11,18 @@ node {
 
   sh "whoami"
 
-  def testImage = docker.image('dr0l3/sbtbuildcontainer')
-  testImage.pull()
-  testImage.inside() {
-    checkout scm
+  sh "docker run --name buildcontainer -it dr0l3/sbtbuildcontainer /bin/bash"
 
-    stage "test"
-    sh "sbt test"
-  }
+  sh "git clone https://github.com/dr0l3/spraySbtTutorial.git"
+
+  sh "cd spraySbtTutorial"
+
+  sh "sbt test"
+
+  sh "exit"
+
+  sh "docker rm -f buildcontainer"
+
 
   stage "package"
   sh "sbt assembly"
