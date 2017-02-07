@@ -1,8 +1,6 @@
 node {
   deleteDir()
   checkout scm
-  sh "sbt update"
-
   stage "install dependencies"
   sh "sbt update"
 
@@ -11,10 +9,11 @@ node {
 
   def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
-  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw" -v ./:/root/spraySbt:rw) {
-    sh "cd spraySbt"
+  testImage.inside("-v /var/lib/jenkins/.ivy2/:/root/.ivy2/:rw -v /var/lib/jenkins/.sbt/:/root/sbt:rw - `pwd`:/root/project") {
+    sh "cd project"
+
     stage "test"
-    sh "sbt compile test"
+    sh "sbt test"
   }
 
   stage "package"
