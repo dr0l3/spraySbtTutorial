@@ -9,7 +9,7 @@ node {
 
   def testImage = docker.image('dr0l3/sbtbuildcontainer')
   testImage.pull()
-  testImage.inside("-v ${WORKSPACE}:/root/project") {
+  testImage.inside() {
     checkout scm
 
     stage "test"
