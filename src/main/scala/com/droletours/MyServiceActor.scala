@@ -31,7 +31,7 @@ trait MyService extends HttpService {
           complete (getRandomColorWithText("your own rainbow color").toJson.prettyPrint)
         } ~
         path("makeachange") {
-          complete (Color("making a change", 42, 42, 42).toJson.prettyPrint)
+          complete (Color("making a new change", 42, 42, 42).toJson.prettyPrint)
         }
       }
     }
