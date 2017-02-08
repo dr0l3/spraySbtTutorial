@@ -23,13 +23,16 @@ trait MyService extends HttpService {
         path("hello") {
           complete (Color("Some random color", 200, 123, 152).toJson.prettyPrint)
         } ~
-          path("hi") {
-            complete (Color("Some color with hi", 223, 312, 222).toJson.prettyPrint)
-          } ~
-          path("colormesilly") {
+        path("hi") {
+          complete (Color("Some color with hi", 223, 312, 222).toJson.prettyPrint)
+        } ~
+        path("colormesilly") {
             //this is a closure. Variables defined here are final e.i. they are not recomputed on path invoke
-            complete (getRandomColorWithText("your own rainbow color").toJson.prettyPrint)
-          }
+          complete (getRandomColorWithText("your own rainbow color").toJson.prettyPrint)
+        } ~
+        path("making a change") {
+          complete (Color("making a change", 42, 42, 42).toJson.prettyPrint)
+        }
       }
     }
   }
