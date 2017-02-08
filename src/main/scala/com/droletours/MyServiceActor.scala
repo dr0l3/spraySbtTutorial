@@ -30,7 +30,7 @@ trait MyService extends HttpService {
             //this is a closure. Variables defined here are final e.i. they are not recomputed on path invoke
           complete (getRandomColorWithText("your own rainbow color").toJson.prettyPrint)
         } ~
-        path("making a change") {
+        path("makeachange") {
           complete (Color("making a change", 42, 42, 42).toJson.prettyPrint)
         }
       }
