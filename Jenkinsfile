@@ -10,9 +10,10 @@ node {
   stage "test"
   sh "sbt test"
 
-  stage "package"
+  stage "assembly"
   sh "sbt assembly"
 
+  stage "build image"
   def deployImage = docker.build "dr0l3/testsbt:${env.BUILD_NUMBER}"
 
   docker.withRegistry("https://docker.io", "docker-registry-login") {
