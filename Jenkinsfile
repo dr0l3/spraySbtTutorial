@@ -7,25 +7,11 @@ node {
   stage "compile"
   sh "sbt compile"
 
-  sh "docker images"
-
-  sh "whoami"
-
-  def testImage = docker.image('dr0l3/sbtbuildcontainer')
-  testImage.inside() {
-    checkout scm
-
-    sh "ls"
-
-    sh "sbt sbtVersion"
-
-    stage "test"
-    sh "sbt test"
-  }
+  stage "test"
+  sh "sbt test"
 
   stage "package"
   sh "sbt assembly"
-
 
   def deployImage = docker.build "dr0l3/testsbt:${env.BUILD_NUMBER}"
 
@@ -39,5 +25,7 @@ node {
   stage "smoke test"
   sh 'sleep 5'
   sh 'curl localhost:8081/colormesilly'
+
+  stage "clean up"
   deleteDir()
 }
